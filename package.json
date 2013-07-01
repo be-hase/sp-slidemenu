@@ -1,0 +1,14 @@
+{
+  "name": "sp-slidemenu.js",
+  "version": "0.1.0",
+  "description": "Smartphone slidemenu",
+  "repository": {
+    "type": "git"
+  },
+  "author": "be-hase.com",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-uglify": "~0.2.0"
+  }
+}
