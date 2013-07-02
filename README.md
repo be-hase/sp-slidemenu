@@ -70,7 +70,6 @@ And load script like below.
   top: 0;
   left: 0;
   width: 240px;
-  height: 100%;
   position: fixed;
   visibility: hidden;
   z-index: -1;

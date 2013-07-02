@@ -10,6 +10,7 @@
  */
 
 ;(function(window, document, undefined) {
+"use strict";
 
 var div, PREFIX, support, gestureStart, EVENTS, ANIME_SPEED, SLIDE_STATUS, SCROLL_STATUS, THRESHOLD, EVENT_MOE_TIME, rclass, ITEM_CLICK_CLASS_NAME;
 
@@ -191,18 +192,20 @@ SpSlidemenu.prototype.init = function(main, slidemenu, button, options) {
     addTouchEvent('move', _this.slidemenuContent, _this.scrollTouchMove, false);
     addTouchEvent('end', _this.slidemenuContent, _this.scrollTouchEnd, false);
     _this.slidemenuContent.addEventListener('click', _this.itemClick, false);
+    // window size change
+    window.addEventListener('resize', debounce(_this.setHeight, 100), false);
 
     return _this;
 };
 
 SpSlidemenu.prototype.bindMethods = function() {
-    var _this, func;
+    var _this, funcs;
     _this = this;
     funcs = [
+        'setHeight',
         'slideOpen', 'slideOpenEnd', 'slideClose', 'slideCloseEnd',
         'buttonTouchStart', 'buttonTouchEnd', 'mainTouchStart',
-        'scrollTouchStart', 'scrollTouchMove', 'scrollTouchEnd',
-        'scrollInertiaMove', 'scrollOverBack', 'scrollOver',
+        'scrollTouchStart', 'scrollTouchMove', 'scrollTouchEnd', 'scrollInertiaMove', 'scrollOverBack', 'scrollOver',
         'itemClick'
     ];
 
@@ -240,6 +243,7 @@ SpSlidemenu.prototype.setDefaultStyle = function() {
     if (support.msPointer) {
         _this.slidemenuContent.style.msTouchAction = 'none';
     }
+    _this.setHeight();
     if (_this.useCssAnimation) {
         setStyles(_this.main, {
             transitionProperty: getCSSName('transform'),
@@ -270,6 +274,19 @@ SpSlidemenu.prototype.setDefaultStyle = function() {
             top: '0px'
         });
     }
+};
+
+SpSlidemenu.prototype.setHeight = function(event) {
+    var _this, browserHeight;
+    _this = this;
+    browserHeight = getBrowserHeight();
+
+    setStyles(_this.main, {
+        minHeight: browserHeight + 'px'
+    });
+    setStyles(_this.slidemenu, {
+        height: browserHeight + 'px'
+    });
 };
 
 SpSlidemenu.prototype.buttonTouchStart = function(event) {
@@ -570,7 +587,7 @@ SpSlidemenu.prototype.scrollInertia = function(speed) {
 };
 
 SpSlidemenu.prototype.scrollInertiaMove = function(to, duration, isOver, speed, directionToTop) {
-    var _this = this;
+    var _this = this, stopTime, canMove;
 
     _this.scrollCurrentY = to;
     if (_this.useCssAnimation) {
@@ -617,7 +634,7 @@ SpSlidemenu.prototype.scrollOver = function(to, duration) {
 };
 
 SpSlidemenu.prototype.scrollOverBack = function() {
-    var _thism, to;
+    var _this, to;
     _this = this;
     if (_this.scrollCurrentY >= 0) {
         to = 0;
@@ -910,6 +927,33 @@ function animate(elem, prop, to, transitionDuration) {
         elem.style[prop] = now + 'px';
     }, 10);
     return timer;
+}
+function getBrowserHeight() {
+    if ( window.innerHeight ) {
+        return window.innerHeight;
+    }
+    else if ( document.documentElement && document.documentElement.clientHeight !== 0 ) {
+        return document.documentElement.clientHeight;
+    }
+    else if ( document.body ) {
+        return document.body.clientHeight;
+    }
+    return 0;
+}
+function debounce(func, wait, immediate) {
+    var timeout, result;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) result = func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) result = func.apply(context, args);
+        return result;
+    };
 }
 
 window.SpSlidemenu = SpSlidemenu;

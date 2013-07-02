@@ -103,7 +103,6 @@ nav ul {
     background: #FFFFFF;
 }
 #contents {
-    height: 900px;
     padding: 20px;
 }
 #contents h1 {
@@ -120,7 +119,6 @@ nav ul {
 .slidemenu {
   top: 0;
   width: 240px;
-  height: 100%;
   position: fixed;
   visibility: hidden;
   z-index: -1;
