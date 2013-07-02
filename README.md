@@ -32,6 +32,7 @@ And load script like below.
 *sp-slidemenu.js is not dependent other library.
 
 ###2. Write HTML
+
 ```
 <body>
   <div class="slidemenu">
@@ -48,18 +49,24 @@ And load script like below.
       </ul>
     </div>
   </div>
-
   <div id="main">
+    <header id="header">
+      <span class="menu-button">
+      </span>
+    </header>
+    <div id="contents">
+    </div>
   </div>
-
 </body>
 ```
+
 * ".slidemenu" element : Required. Bad you can use your favorite selector.
 * ".slidemenu-header" element : Optional. if using this, you must use this selector. 
 * ".slidemenu-body" element : Required. You must use this selector. 
 * ".slidemenu-content" element : Required. You must use this selector.
-* ".menu-item" element : Optional. if using this, you must use this selector.
-* "#main" element : Required. Bad you can use your favorite selector.
+* ".menu-item" element : Optional. if using this, you must use this selector. When clicked, close slidemenu.
+* "#main" element : Required. Bad you can use your favorite selector.  
+* ".menu-button" element : Required. Bad you can use your favorite selector. When Clicked, toggle(open or close) slidemenu. 
 
 ###3. Write CSS
 ```
@@ -86,6 +93,23 @@ And load script like below.
   position: relative;
 }
 ```
+
+###4. Write JavaScript
+
+```
+SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: reft});
+```
+
+###DOM Figure
+
+* **close**
+
+![image1](http://be-hase.com.s3.amazonaws.com/static/img/SpSlidemenu/image1.png)
+
+* **open**
+
+![image1](http://be-hase.com.s3.amazonaws.com/static/img/SpSlidemenu/image2.png)
+
 
 ##Document
 
