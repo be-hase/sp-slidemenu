@@ -158,6 +158,6 @@ sp_slidemenu.slideClose();
 ```
 
 
-##Demo
+##Demo & Sample
 
-[Click here!](http://be-hase.com.s3.amazonaws.com/static/SpSlidemenu/demo1.html)
+Demo : [Click here!](http://be-hase.com.s3.amazonaws.com/static/SpSlidemenu/demo1.html)
