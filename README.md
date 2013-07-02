@@ -3,7 +3,7 @@
 ##About
 sp-slidemenu.js is a JavaScript library that provides UI of slide menu.
 
-See [demo](http://be-hase.com.s3.amazonaws.com/static/SpSlidemenu/demo1.html)
+See [demo](http://be-hase.com.s3.amazonaws.com/static/sp-slidemenu/sample/demo1.html)
 
 ##Support browser
 * Mobile
@@ -160,4 +160,4 @@ sp_slidemenu.slideClose();
 
 ##Demo & Sample
 
-Demo : [Click here!](http://be-hase.com.s3.amazonaws.com/static/SpSlidemenu/demo1.html)
+Demo : [Click here!](http://be-hase.com.s3.amazonaws.com/static/sp-slidemenu/sample/demo1.html)
