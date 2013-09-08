@@ -97,7 +97,7 @@ And load script like below.
 ###4. Write JavaScript
 
 ```
-SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: reft});
+SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: 'left'});
 ```
 
 ###DOM Figure
