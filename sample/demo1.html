@@ -65,7 +65,12 @@
 
   <script type="text/javascript" src="../sp-slidemenu.js"></script>
   <script>
-    var menu = SpSlidemenu('#main', '.slidemenu-left', '.menu-button-left', {direction: 'left'});
+    var menu = SpSlidemenu({
+      main : '#main',
+      button: '.menu-button-left',
+      slidemenu : '.slidemenu-left',
+      direction: 'left'
+    });
   </script>
 </body>
 </html>

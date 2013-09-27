@@ -109,8 +109,19 @@
 
   <script type="text/javascript" src="../sp-slidemenu.js"></script>
   <script>
-    var menu_left = SpSlidemenu('#main', '.slidemenu-left', '.menu-button-left', {direction: 'left'});
-    var menu_right = SpSlidemenu('#main', '.slidemenu-right', '.menu-button-right', {direction: 'right'});
+    var menu_left = SpSlidemenu({
+      main : '#main',
+      button: '.menu-button-left',
+      slidemenu : '.slidemenu-left',
+      direction: 'left'
+    });
+
+    var menu_right = SpSlidemenu({
+      main : '#main',
+      button: '.menu-button-right',
+      slidemenu : '.slidemenu-right',
+      direction: 'right'
+    });
   </script>
 </body>
 </html>
