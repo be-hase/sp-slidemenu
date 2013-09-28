@@ -12,7 +12,7 @@
 ;(function(window, document, undefined) {
 "use strict";
 
-var div, PREFIX, support, gestureStart, EVENTS, ANIME_SPEED, SLIDE_STATUS, SCROLL_STATUS, THRESHOLD, EVENT_MOE_TIME, rclass, ITEM_CLICK_CLASS_NAME;
+var div, PREFIX, support, gestureStart, EVENTS, ANIME_SPEED, SLIDE_STATUS, SCROLL_STATUS, THRESHOLD, EVENT_MOE_TIME, rclass, ITEM_CLICK_CLASS_NAME, defaults;
 
 div = document.createElement('div');
 
@@ -58,6 +58,16 @@ EVENTS = {
         touch: 'touchend',
         mouse: 'mouseup'
     }
+};
+
+defaults = {
+    main               : "#main",
+    button             : ".menu-button",
+    slidemenu          : ".slidemenu",
+    slidemenu_header   : ".slidemenu-header",
+    slidemenu_body     : ".slidemenu-body",
+    slidemenu_content  : ".slidemenu-content",
+    direction          : 'left'
 };
 
 gestureStart = false;
@@ -131,25 +141,29 @@ int: scrollOverTimer
 int: scrollMaxY
 */
 
-function SpSlidemenu(main, slidemenu, button, options) {
+function SpSlidemenu(options) {
     if (this instanceof SpSlidemenu) {
-        return this.init(main, slidemenu, button, options);
+        return this.init(options);
     } else {
-        return new SpSlidemenu(main, slidemenu, button, options);
+        return new SpSlidemenu(options);
     }
 }
 
-SpSlidemenu.prototype.init = function(main, slidemenu, button, options) {
+SpSlidemenu.prototype.init = function(options) {
     var _this = this;
 
+    for(var k in defaults) {
+      if (!options.hasOwnProperty(k)){
+        options[k] = defaults[k];
+      }
+    }
+
     // find and set element.
-    _this.setElement(main, slidemenu, button);
+    _this.setElement(options);
     if (!_this.main || !_this.slidemenu || !_this.button || !_this.slidemenuBody || !_this.slidemenuContent) {
         throw new Error('Element not found. Please set correctly.');
     }
 
-    // options
-    options = options || {};
     _this.disableCssAnimation = (options.disableCssAnimation === undefined) ? false : options.disableCssAnimation;
     _this.disable3d = (options.disable3d === undefined) ? false : options.disable3d;
     _this.direction = 'left';
@@ -214,27 +228,21 @@ SpSlidemenu.prototype.bindMethods = function() {
     });
 };
 
-SpSlidemenu.prototype.setElement = function(main, slidemenu, button) {
+SpSlidemenu.prototype.setElement = function(options) {
     var _this = this;
 
-    _this.main = main;
-    if (typeof main === 'string') {
-        _this.main = document.querySelector(main);
+    for(var k in options) {
+      if (typeof options[k] !== "string") {
+        return false;
+      }
     }
-    _this.slidemenu = slidemenu;
-    if (typeof slidemenu === 'string') {
-        _this.slidemenu = document.querySelector(slidemenu);
-    }
-    _this.button = button;
-    if (typeof button === 'string') {
-        _this.button = document.querySelector(button);
-    }
-    if (!_this.slidemenu) {
-        return;
-    }
-    _this.slidemenuBody = _this.slidemenu.querySelector('.slidemenu-body');
-    _this.slidemenuContent = _this.slidemenu.querySelector('.slidemenu-content');
-    _this.slidemenuHeader = _this.slidemenu.querySelector('.slidemenu-header');
+
+    _this.main = document.querySelector(options.main);
+    _this.slidemenu = document.querySelector(options.slidemenu);
+    _this.button = document.querySelector(options.button);
+    _this.slidemenuBody = document.querySelector(options.slidemenu_body);
+    _this.slidemenuContent = document.querySelector(options.slidemenu_content);
+    _this.slidemenuHeader = document.querySelector(options.slidemenu_header);
 };
 
 SpSlidemenu.prototype.setDefaultStyle = function() {
@@ -408,14 +416,17 @@ SpSlidemenu.prototype.slideClose = function(event) {
 
     // change style
     if (_this.useCssAnimation) {
-        setStyles(_this.main, {
-            transform: _this.getTranslateX(0)
-        });
         setStyles(_this.slidemenu, {
             transitionProperty: 'visibility',
             visibility: 'hidden',
             zIndex: '-1'
         });
+
+        setTimeout( function() {
+          setStyles(_this.main, {
+              transform: _this.getTranslateX(0)
+          });
+        }, 50);
     } else {
         animate(_this.main, _this.direction, 0, ANIME_SPEED.slider);
         setStyles(_this.slidemenu, {
