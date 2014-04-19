@@ -1,7 +1,11 @@
 #sp-slidemenu.js.
 
 ## ※Caution!!
-There seems to be a bug in the Android some devices.
+There seems to be a bug in some old Android devices.
+
+I am sorry. 
+I ended up selling the old Android device. Therefore, I will not be able to reproduce the bug. 
+So, I do not have to fix the bug yet.
 
 ##About
 sp-slidemenu.js is a JavaScript library that provides UI of slide menu.
