@@ -32,7 +32,7 @@ See [demo](http://be-hase.com.s3.amazonaws.com/static/sp-slidemenu/sample/demo1.
 Download code.  
 And load script like below.  
 
-```
+```html
 <script src="sp-slidemenu-min.js"></script>
 ```
 
@@ -76,7 +76,8 @@ And load script like below.
 * ".menu-button" element : Required. Bad you can use your favorite selector. When Clicked, toggle(open or close) slidemenu. 
 
 ###3. Write CSS
-```
+
+```css
 #main {
   z-index: 1;
 }
@@ -103,7 +104,7 @@ And load script like below.
 
 ###4. Write JavaScript
 
-```
+```javascript
 SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: 'left'});
 ```
 
@@ -135,7 +136,7 @@ SpSlidemenu(main, slidemenu, button, options)
 
 **exmaple**  
 
-```
+```javascript
 var sp_slidemenu = SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: 'left'});
 ```
 
@@ -151,7 +152,7 @@ direction | String | left | left or right.
 **slideOpen**  
 Open slidemenu.
 
-```
+```javascript
 var sp_slidemenu = SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: 'left'});
 sp_slidemenu.slideOpen();
 ```
@@ -159,7 +160,7 @@ sp_slidemenu.slideOpen();
 **slideClose**  
 Close slidemenu.
 
-```
+```javascript
 var sp_slidemenu = SpSlidemenu('#main', '.slidemenu', '.menu-button', {direction: 'left'});
 sp_slidemenu.slideClose();
 ```
