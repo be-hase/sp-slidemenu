@@ -1,4 +1,4 @@
-#sp-slidemenu.js.
+#sp-slidemenu.js
 
 ## ※Caution!!
 There seems to be a bug in some old Android devices.
