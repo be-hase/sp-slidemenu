@@ -4,7 +4,7 @@
  * @version  0.1.0
  * @url https://github.com/be-hase/sp-slidemenu
  *
- * Copyright 2013 be-hase.com, Inc.
+ * Copyright 2013 be-hase.com.
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
